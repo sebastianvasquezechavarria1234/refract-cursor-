@@ -16,7 +16,7 @@ function App() {
         SPLAT_FORCE={6000}
         COLOR_UPDATE_SPEED={10}
         SHADING
-        RAINBOW_MODE={false}
+        RAINBOW_MODE={true}
         COLOR="#A855F7"
       />
       

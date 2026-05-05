@@ -690,7 +690,7 @@ function SplashCursor({
     function calcDeltaTime() {
       let now = performance.now();
       let dt = (now - lastUpdateTime) / 1000;
-      dt = Math.min(dt, 0.033333); // Aumentamos el límite a 30fps para evitar el efecto de cámara lenta
+      dt = Math.min(dt, 0.016666); // Cap at 60fps for maximum fluidity
       lastUpdateTime = now;
       return dt;
     }

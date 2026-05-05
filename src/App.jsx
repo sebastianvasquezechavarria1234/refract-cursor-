@@ -6,13 +6,13 @@ function App() {
     <div className="min-h-screen bg-neutral-950 text-white flex flex-col items-center justify-center selection:bg-cyan-500/30">
       <SplashCursor 
         SIM_RESOLUTION={128}
-        DYE_RESOLUTION={1024}
-        PRESSURE_ITERATIONS={20}
-        DENSITY_DISSIPATION={2.5}
-        VELOCITY_DISSIPATION={1.5}
-        PRESSURE={0.2}
-        CURL={45}
-        SPLAT_RADIUS={0.35}
+        DYE_RESOLUTION={512}
+        PRESSURE_ITERATIONS={24}
+        DENSITY_DISSIPATION={3.0}
+        VELOCITY_DISSIPATION={2.0}
+        PRESSURE={0.8}
+        CURL={30}
+        SPLAT_RADIUS={0.25}
         SPLAT_FORCE={6000}
         COLOR_UPDATE_SPEED={15}
         SHADING={true}

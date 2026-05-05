@@ -6,24 +6,23 @@ function App() {
     <div className="min-h-screen bg-neutral-950 text-white flex flex-col items-center justify-center selection:bg-cyan-500/30">
       <SplashCursor 
         SIM_RESOLUTION={128}
-        DYE_RESOLUTION={512}
-        PRESSURE_ITERATIONS={14}
-        DENSITY_DISSIPATION={3.5}
-        VELOCITY_DISSIPATION={2}
-        PRESSURE={0.1}
-        CURL={30}
-        SPLAT_RADIUS={0.15}
+        DYE_RESOLUTION={1024}
+        PRESSURE_ITERATIONS={20}
+        DENSITY_DISSIPATION={2.5}
+        VELOCITY_DISSIPATION={1.5}
+        PRESSURE={0.2}
+        CURL={45}
+        SPLAT_RADIUS={0.35}
         SPLAT_FORCE={6000}
-        COLOR_UPDATE_SPEED={10}
-        SHADING
+        COLOR_UPDATE_SPEED={15}
+        SHADING={true}
         RAINBOW_MODE={true}
-        COLOR="#A855F7"
       />
       
-      <h1 className="text-8xl font-[900] tracking-tighter font-sans-flex bg-gradient-to-t from-neutral-600 to-white bg-clip-text text-transparent">
+      <h1 className="text-8xl font-[100] tracking-tighter font-sans-flex bg-gradient-to-t from-neutral-600 to-white bg-clip-text text-transparent drop-shadow-[0_0_25px_rgba(255,255,255,0.1)] animate-breathe select-none">
         Lumina Cursor
       </h1>
-      <p className="mt-4 text-neutral-400 font-sans-flex font-[300] text-lg">
+      <p className="mt-4 text-neutral-400 font-sans-flex font-[300] text-lg tracking-widest uppercase opacity-70">
         Move your mouse to experience the fluid splash effect.
       </p>
 
@@ -32,9 +31,9 @@ function App() {
           href="https://sebas-dev.vercel.app/" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="text-neutral-600 hover:text-white transition-colors duration-300 font-sans-flex font-[200] text-sm italic underline decoration-neutral-700 hover:decoration-white underline-offset-4"
+          className="text-neutral-600 hover:text-white transition-all duration-500 font-sans-flex font-[200] text-sm italic underline decoration-neutral-800 hover:decoration-white underline-offset-8 tracking-wider"
         >
-          creado por sebastian vasquez echavarria
+          Created by Sebastian Vasquez Echavarria
         </a>
       </footer>
       

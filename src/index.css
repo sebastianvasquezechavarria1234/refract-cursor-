@@ -22,4 +22,18 @@
       "GRAD" 0,
       "ROND" 0;
   }
+  .animate-breathe {
+    animation: breathe 8s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% {
+      filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0));
+      letter-spacing: -0.05em;
+    }
+    50% {
+      filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.2));
+      letter-spacing: 0.05em;
+    }
+  }
 }

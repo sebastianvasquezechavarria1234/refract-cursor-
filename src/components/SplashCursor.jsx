@@ -811,13 +811,16 @@ function SplashCursor({
     }
 
     function clickSplat(pointer) {
-      const color = generateColor();
-      color.r *= 10.0;
-      color.g *= 10.0;
-      color.b *= 10.0;
-      let dx = 10 * (Math.random() - 0.5);
-      let dy = 30 * (Math.random() - 0.5);
-      splat(pointer.texcoordX, pointer.texcoordY, dx, dy, color);
+      for (let i = 0; i < 10; i++) {
+        const color = generateColor();
+        color.r *= 15.0;
+        color.g *= 15.0;
+        color.b *= 15.0;
+        let angle = (i / 10) * Math.PI * 2;
+        let dx = Math.cos(angle) * 150;
+        let dy = Math.sin(angle) * 150;
+        splat(pointer.texcoordX, pointer.texcoordY, dx, dy, color);
+      }
     }
 
     function splat(x, y, dx, dy, color) {

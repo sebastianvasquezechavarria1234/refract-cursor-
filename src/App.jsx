@@ -1,22 +1,31 @@
 import React from 'react'
+import SplashCursor from './components/SplashCursor'
 
 function App() {
   return (
     <div className="min-h-screen bg-neutral-950 text-white flex flex-col items-center justify-center selection:bg-cyan-500/30">
+      <SplashCursor 
+        DENSITY_DISSIPATION={3.5}
+        VELOCITY_DISSIPATION={2}
+        PRESSURE={0.1}
+        CURL={3}
+        SPLAT_RADIUS={0.2}
+        SPLAT_FORCE={6000}
+        COLOR_UPDATE_SPEED={10}
+        SHADING
+        RAINBOW_MODE={false}
+        COLOR="#A855F7"
+      />
+      
       <h1 className="text-6xl font-bold tracking-tighter bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
         Lumina Cursor
       </h1>
       <p className="mt-4 text-neutral-400 font-light">
-        Move your mouse to experience the effect.
+        Move your mouse to experience the fluid splash effect.
       </p>
       
-      {/* 
-        The cursor effect logic will go here.
-        Ready for implementation!
-      */}
-      
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Effect container */}
+        {/* Effect container is now handled by SplashCursor */}
       </div>
     </div>
   )

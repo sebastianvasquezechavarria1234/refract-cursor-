@@ -2,7 +2,7 @@
 
 A high-performance, interactive fluid simulation cursor effect built with React, WebGL, and Tailwind CSS. Experience a fluid, cinematic splash that follows your movement and reacts to your interactions.
 
-![Lumina Cursor Preview](https://raw.githubusercontent.com/sebastianvasquezechavarria1234/lumina-cursor/main/preview.png) *(Note: Add a real preview image to your repo for maximum impact)*
+![Lumina Cursor Preview](./public/preview.png)
 
 ## ✨ Features
 

@@ -3,7 +3,7 @@ import SplashCursor from './components/SplashCursor'
 
 function App() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-white flex flex-col items-center justify-center selection:bg-cyan-500/30">
+    <div className="min-h-screen bg-[#020617] text-white flex flex-col items-center justify-center selection:bg-cyan-500/30">
       <SplashCursor 
         SIM_RESOLUTION={128}
         DYE_RESOLUTION={512}

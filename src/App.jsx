@@ -20,10 +20,10 @@ function App() {
         COLOR="#A855F7"
       />
       
-      <h1 className="text-8xl font-black tracking-tight font-playfair bg-gradient-to-r from-white via-neutral-400 to-neutral-600 bg-clip-text text-transparent italic">
+      <h1 className="text-8xl font-[1000] tracking-tighter font-sans-flex bg-gradient-to-b from-white to-neutral-500 bg-clip-text text-transparent">
         Lumina Cursor
       </h1>
-      <p className="mt-6 text-neutral-500 font-sans-flex uppercase tracking-[0.2em] text-sm">
+      <p className="mt-6 text-neutral-500 font-sans-flex font-[300] uppercase tracking-[0.3em] text-xs">
         Move your mouse to experience the fluid splash effect.
       </p>
       

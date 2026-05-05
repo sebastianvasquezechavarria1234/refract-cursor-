@@ -20,7 +20,7 @@ function App() {
         COLOR="#A855F7"
       />
       
-      <h1 className="text-8xl font-[100] tracking-tighter font-sans-flex bg-gradient-to-b from-white to-neutral-500 bg-clip-text text-transparent">
+      <h1 className="text-8xl font-[900] tracking-tighter font-sans-flex bg-gradient-to-t from-neutral-600 to-white bg-clip-text text-transparent">
         Lumina Cursor
       </h1>
       <p className="mt-4 text-neutral-400 font-sans-flex font-[300] text-lg">
@@ -32,7 +32,7 @@ function App() {
           href="https://sebas-dev.vercel.app/" 
           target="_blank" 
           rel="noopener noreferrer"
-          className="text-neutral-600 hover:text-white transition-colors duration-300 font-sans-flex font-[200] text-sm"
+          className="text-neutral-600 hover:text-white transition-colors duration-300 font-sans-flex font-[200] text-sm italic underline decoration-neutral-700 hover:decoration-white underline-offset-4"
         >
           creado por sebastian vasquez echavarria
         </a>

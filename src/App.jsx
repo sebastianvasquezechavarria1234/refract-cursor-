@@ -3,7 +3,7 @@ import SplashCursor from './components/SplashCursor'
 
 function App() {
   return (
-    <div className="min-h-screen bg-[#020617] text-white flex flex-col items-center justify-center selection:bg-cyan-500/30">
+    <div className="min-h-screen bg-neutral-950 text-white flex flex-col items-center justify-center selection:bg-cyan-500/30">
       <SplashCursor 
         SIM_RESOLUTION={128}
         DYE_RESOLUTION={512}
@@ -20,10 +20,10 @@ function App() {
         COLOR="#A855F7"
       />
       
-      <h1 className="text-6xl font-bold tracking-tighter bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
+      <h1 className="text-8xl font-black tracking-tight font-playfair bg-gradient-to-r from-white via-neutral-400 to-neutral-600 bg-clip-text text-transparent italic">
         Lumina Cursor
       </h1>
-      <p className="mt-4 text-neutral-400 font-light">
+      <p className="mt-6 text-neutral-500 font-sans-flex uppercase tracking-[0.2em] text-sm">
         Move your mouse to experience the fluid splash effect.
       </p>
       

@@ -674,7 +674,7 @@ function SplashCursor({
 
     updateKeywords();
     initFramebuffers();
-    let lastUpdateTime = Date.now();
+    let lastUpdateTime = performance.now();
     let colorUpdateTimer = 0.0;
 
     function updateFrame() {
@@ -688,9 +688,9 @@ function SplashCursor({
     }
 
     function calcDeltaTime() {
-      let now = Date.now();
+      let now = performance.now();
       let dt = (now - lastUpdateTime) / 1000;
-      dt = Math.min(dt, 0.016666);
+      dt = Math.min(dt, 0.033333); // Aumentamos el límite a 30fps para evitar el efecto de cámara lenta
       lastUpdateTime = now;
       return dt;
     }

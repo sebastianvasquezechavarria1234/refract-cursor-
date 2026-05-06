@@ -1,4 +1,4 @@
-# Lumina Cursor 🌌
+# Cursor New 🌌
 
 A high-performance, interactive fluid simulation cursor effect built with React, WebGL, and Tailwind CSS. Experience a fluid, cinematic splash that follows your movement and reacts to your interactions.
 
@@ -31,11 +31,11 @@ A high-performance, interactive fluid simulation cursor effect built with React,
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/sebastianvasquezechavarria1234/lumina-cursor.git
+   git clone https://github.com/sebastianvasquezechavarria1234/cursor-new.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd lumina-cursor
+   cd cursor-new
    ```
 3. Install dependencies:
    ```bash

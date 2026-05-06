@@ -1,11 +1,11 @@
 /* eslint-disable react/no-unknown-property */
 import React, { useRef, useState, Suspense, useEffect, useMemo } from 'react';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import { useGLTF, Environment, MeshTransmissionMaterial } from '@react-three/drei';
 import * as THREE from 'three';
 import { easing } from 'maath';
 
-const MODES = ['lens', 'bar', 'cube'];
+const MODES = ['lens', 'cube', 'star', 'crystal', 'donut', 'pyramid'];
 
 export default function FluidGlass() {
   const [modeIdx, setModeIdx] = useState(0);
@@ -25,7 +25,7 @@ export default function FluidGlass() {
   return (
     <div className="w-full h-full bg-[#050505]">
       {/* HUD Hint */}
-      <div className="absolute top-8 left-1/2 -translate-x-1/2 z-10 pointer-events-none opacity-40 text-[10px] uppercase tracking-[0.2em] text-white text-center">
+      <div className="absolute top-8 left-1/2 -translate-x-1/2 z-10 pointer-events-none opacity-40 text-[10px] uppercase tracking-[0.2em] text-white text-center select-none">
         Click to switch mode<br/>
         <span className="text-white opacity-100 font-bold">{MODES[modeIdx]}</span>
       </div>
@@ -54,10 +54,31 @@ function ReactiveLens({ mode }) {
   const matRef = useRef();
   const lightRef = useRef();
   
-  // Load models
+  // Load models for original shapes
   const { nodes: lensNodes } = useGLTF('/assets/3d/lens.glb');
-  const { nodes: barNodes } = useGLTF('/assets/3d/bar.glb');
   const { nodes: cubeNodes } = useGLTF('/assets/3d/cube.glb');
+
+  // Custom Geometries
+  const starGeo = useMemo(() => {
+    const shape = new THREE.Shape();
+    const spikes = 5;
+    const outerRadius = 1;
+    const innerRadius = 0.4;
+    for (let i = 0; i < spikes * 2; i++) {
+        const radius = i % 2 === 0 ? outerRadius : innerRadius;
+        const angle = (i / (spikes * 2)) * Math.PI * 2;
+        const x = Math.cos(angle) * radius;
+        const y = Math.sin(angle) * radius;
+        if (i === 0) shape.moveTo(x, y);
+        else shape.lineTo(x, y);
+    }
+    shape.closePath();
+    return new THREE.ExtrudeGeometry(shape, { depth: 0.4, bevelEnabled: true, bevelThickness: 0.1, bevelSize: 0.1 });
+  }, []);
+
+  const crystalGeo = useMemo(() => new THREE.IcosahedronGeometry(1, 0), []);
+  const donutGeo = useMemo(() => new THREE.TorusGeometry(0.7, 0.3, 16, 100), []);
+  const pyramidGeo = useMemo(() => new THREE.TetrahedronGeometry(1.2, 0), []);
 
   const prev = useRef({ x: 0, y: 0 });
   const scaleTarget = useRef([0.25, 0.25, 0.25]);
@@ -68,39 +89,38 @@ function ReactiveLens({ mode }) {
     const x = (pointer.x * v.width) / 2;
     const y = (pointer.y * v.height) / 2;
 
-    // Velocity calc
     const velX = (pointer.x - prev.current.x) / delta;
     const velY = (pointer.y - prev.current.y) / delta;
     prev.current = { x: pointer.x, y: pointer.y };
 
     const speed = Math.sqrt(velX * velX + velY * velY);
     
-    // Dynamic RGB Split (Chromatic Aberration)
+    // Dynamic RGB Split
     if (matRef.current) {
-        // We drive the material property directly to avoid React re-renders
-        const targetChroma = 0.05 + Math.min(speed * 0.025, 0.3);
+        const targetChroma = 0.05 + Math.min(speed * 0.03, 0.4);
         matRef.current.chromaticAberration = THREE.MathUtils.lerp(matRef.current.chromaticAberration, targetChroma, 0.1);
     }
 
     // Squash & Stretch
     const stretch = Math.min(speed * 0.015, 0.18);
-    const baseS = mode === 'bar' ? 0.15 : 0.25;
+    const baseS = (mode === 'lens' || mode === 'cube') ? 0.25 : 0.5; // Scales for custom geos are different
     
-    // Axis mapping: x->x, z->y (vertical), y->z (depth)
-    const sX = baseS + Math.abs(velX) * 0.012;
-    const sZ = baseS + Math.abs(velY) * 0.012;
+    const sX = baseS + Math.abs(velX) * 0.015;
+    const sZ = baseS + Math.abs(velY) * 0.015;
     const sY = Math.max(baseS - stretch * 0.5, 0.1);
 
-    scaleTarget.current = [Math.min(sX, 0.5), sY, Math.min(sZ, 0.5)];
+    scaleTarget.current = [Math.min(sX, 1.2), sY, Math.min(sZ, 1.2)];
 
     if (meshRef.current) {
       easing.damp3(meshRef.current.position, [x, y, 15], 0.2, delta);
-      meshRef.current.rotation.x = Math.PI / 2 + pointer.y * 0.15;
-      meshRef.current.rotation.y = pointer.x * 0.15;
-      easing.damp3(meshRef.current.scale, scaleTarget.current, 0.12, delta);
+      
+      // Back to smooth tilting — much cleaner
+      const tiltX = mode === 'lens' ? Math.PI / 2 : 0;
+      easing.damp3(meshRef.current.rotation, [tiltX + pointer.y * 0.2, pointer.x * 0.2, 0], 0.15, delta);
+      
+      easing.damp3(meshRef.current.scale, scaleTarget.current, 0.15, delta);
     }
 
-    // Delayed Reactive Light
     if (lightRef.current) {
       easing.damp3(lightRef.current.position, [x, y, 16], 0.4, delta);
     }
@@ -108,35 +128,29 @@ function ReactiveLens({ mode }) {
 
   const geometry = useMemo(() => {
     if (mode === 'lens') return lensNodes.Cylinder.geometry;
-    if (mode === 'bar') return barNodes.Cube.geometry;
-    return cubeNodes.Cube.geometry;
-  }, [mode, lensNodes, barNodes, cubeNodes]);
+    if (mode === 'cube') return cubeNodes.Cube.geometry;
+    if (mode === 'star') return starGeo;
+    if (mode === 'crystal') return crystalGeo;
+    if (mode === 'donut') return donutGeo;
+    return pyramidGeo;
+  }, [mode, lensNodes, cubeNodes, starGeo, crystalGeo, donutGeo, pyramidGeo]);
 
   return (
     <group>
-      <pointLight 
-        ref={lightRef} 
-        intensity={3} 
-        distance={15} 
-        color="#ffffff" 
-      />
+      <pointLight ref={lightRef} intensity={4} distance={15} color="#ffffff" />
 
       <mesh ref={meshRef} geometry={geometry}>
         <MeshTransmissionMaterial
           ref={matRef}
-          buffer={null} // auto-buffer for refraccion
-          ior={1.4}
-          thickness={2}
-          anisotropy={0.1}
+          ior={1.45}
+          thickness={2.5}
+          anisotropy={0.3}
           chromaticAberration={0.05}
           transmission={1}
-          roughness={0}
-          distortion={0.2}
-          distortionScale={0.1}
+          roughness={0.01}
+          distortion={0.3}
+          distortionScale={0.2}
           temporalDistortion={0.05}
-          attenuationDistance={0.5}
-          attenuationColor="#ffffff"
-          color="#ffffff"
         />
       </mesh>
     </group>

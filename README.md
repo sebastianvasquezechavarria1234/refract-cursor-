@@ -2,7 +2,7 @@
 
 Una experiencia de cursor 3D ultra-premium construida con **React Three Fiber** y **Three.js**. Este proyecto transforma el puntero estándar en un lente de vidrio físico que refracta y distorsiona el contenido de la pantalla con una fluidez asombrosa.
 
-![Preview](./public/preview.png)
+![Preview](./public/646_1x_shots_so.png)
 
 ## 🌟 Características Principales
 

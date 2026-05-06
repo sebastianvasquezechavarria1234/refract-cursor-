@@ -1,74 +1,54 @@
-# Cursor New 🌌
+# Refract Cursor 🫧🔍💎
 
-A high-performance, interactive fluid simulation cursor effect built with React, WebGL, and Tailwind CSS. Experience a fluid, cinematic splash that follows your movement and reacts to your interactions.
+Una experiencia de cursor 3D ultra-premium construida con **React Three Fiber** y **Three.js**. Este proyecto transforma el puntero estándar en un lente de vidrio físico que refracta y distorsiona el contenido de la pantalla con una fluidez asombrosa.
 
-![Lumina Cursor Preview](./public/preview.png)
+![Preview](./public/preview.png)
 
-## ✨ Features
+## 🌟 Características Principales
 
-- **Fluid Dynamics**: High-fidelity fluid simulation using WebGL shaders.
-- **Interactive Explosions**: Multi-directional color splashes on mouse click.
-- **Optimized Performance**: Capped at 60FPS with balanced resolutions for a silky-smooth experience.
-- **Modern UI**: Minimalist editorial design featuring thin typography and dark aesthetics.
-- **Customizable**: Easily tweak parameters like curl, dissipation, and pressure iterations.
+*   **Refracción de Vidrio Real:** Simulación física de luz usando `MeshTransmissionMaterial` para una distorsión realista del fondo.
+*   **6 Modos Interactivos:** Cambia entre diferentes geometrías 3D con un solo click:
+    *   `Lens` (Lente clásica) 🫧
+    *   `Cube` (Cubo geométrico) ⏹️
+    *   `Star` (Estrella de 5 puntas) ⭐
+    *   `Crystal` (Icosaedro diamante) 💎
+    *   `Donut` (Toroide) 🍩
+    *   `Pyramid` (Tetraedro) 🔼
+*   **Iluminación Reactiva (Glow Tail):** Una luz puntual sigue al cursor con un ligero retraso, creando un destello dinámico que persigue al vidrio.
+*   **RGB Split Dinámico:** Aberración cromática vinculada a la velocidad. Cuanto más rápido muevas el mouse, más se separan los colores.
+*   **Squash & Stretch:** Físicas elásticas que deforman la figura según la dirección y velocidad del movimiento.
+*   **100% Responsivo:** Las geometrías se ajustan automáticamente al tamaño de cualquier pantalla.
 
-## 🛠️ Tech Stack
+## 🚀 Tecnologías Usadas
 
-- **Framework**: [React](https://reactjs.org/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Graphics**: [WebGL](https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API)
-- **Fonts**: [Google Sans Flex](https://fonts.google.com/specimen/Google+Sans+Flex)
+*   **React 19**
+*   **Three.js** (Motor 3D)
+*   **React Three Fiber** (Puente React-Three)
+*   **@react-three/drei** (Utilidades 3D)
+*   **Maath** (Cálculos matemáticos y suavizado)
+*   **Tailwind CSS** (Estructura de la UI)
 
-## 🚀 Getting Started
+## 🛠️ Instalación
 
-### Prerequisites
+1.  Clona el repositorio:
+    ```bash
+    git clone https://github.com/sebastianvasquezechavarria1234/refract-cursor.git
+    ```
+2.  Instala las dependencias:
+    ```bash
+    npm install
+    ```
+3.  Inicia el servidor de desarrollo:
+    ```bash
+    npm run dev
+    ```
 
-- Node.js (v18 or higher recommended)
-- npm or yarn
+## 🎮 Cómo Usar
 
-### Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/sebastianvasquezechavarria1234/cursor-new.git
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd cursor-new
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-
-### Running Locally
-
-To start the development server:
-```bash
-npm run dev
-```
-
-The application will be available at `http://localhost:5173`.
-
-## 🎨 Configuration
-
-You can customize the splash effect in `src/App.jsx` by modifying the `SplashCursor` props:
-
-```jsx
-<SplashCursor 
-  DYE_RESOLUTION={512}
-  PRESSURE_ITERATIONS={24}
-  CURL={30}
-  SPLAT_RADIUS={0.25}
-  RAINBOW_MODE={true}
-/>
-```
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+*   **Movimiento:** Desplaza el mouse para ver el efecto de refracción y deformación.
+*   **Click Izquierdo:** Alterna entre los 6 modos de geometría disponibles.
+*   **Click Derecho:** Deshabilitado para mejorar la experiencia inmersiva.
 
 ---
 
-**Created by [Sebastian Vasquez Echavarria](https://sebas-dev.vercel.app/)**
+Creado con pasión por **Sebastian Vasquez Echavarria** 🚀💎
